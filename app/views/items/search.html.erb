@@ -1,0 +1,39 @@
+<h1>Search</h1>
+<h2>You searched for <% @search_term %></h2>
+
+<% if @items.length ==0 %>
+
+<br>
+
+<p>No products match what you you ae looking for.</p>
+
+<% end %>
+
+<table class="catalog">
+    
+    <% @items.each do |item| %>
+    
+    <tr>
+        <td>
+            <div class"image">
+                <%= link_to (image_tag item.image_url), item %>
+            </div>
+            
+            <div class="catalog">
+                <%= link_to item.title, item %>
+            </div>
+ 
+            <div class="catalog">
+                <%= item.artist %>
+            </div>
+  
+            <div class="catalog">
+                <%= number_to_currency(item.price, :unit => '€') %>
+            </div>
+            
+            <a href="/cart/<%= item.id %>">Add to Cart</a>
+            
+        </td>
+    </tr>
+    <% end %>
+</table>

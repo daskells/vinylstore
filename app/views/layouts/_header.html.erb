@@ -2,14 +2,20 @@
   <div class="container">
     <h4 id="logo">Good Vibrations Vinyl</h4>
     <nav>
-        <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home",   root_path %></li>
-            <li><%= link_to "Log In ",   login_path %></li>
-            <li><%= link_to "Register", register_path %></li>
-            <li><%= link_to "Browse", catalog_path %></li>
-            <li><%= link_to "Search", search_path %></li>
-            <li><%= link_to "Shopping Cart", cart_path %></li>
-            <li><%= link_to "Log Out", '#' %></li>
+        <ul class="nav navbar-nav navbar-right col-sm-12">
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Browse", items_path %></li>
+            <li><%= link_to "View Cart", cart_path %></li>
+            <li><%= render 'layouts/search' %></li>
+            <% if user_signed_in? %>
+            <p class="loginheaders"><%= current_user.email %> (<%= link_to 'Log Out', destroy_user_session_path, :method => :delete %>)
+            <%= link_to 'Edit Profile', edit_user_registration_path %>
+            <%= link_to 'View Orders' , orders_path %></p>
+            <% else %>
+            <p><%= link_to 'Register', new_user_registration_path %> or <%= link_to 'Log In', new_user_session_path %></p>
+            <% end %>
+            </li>
+  
         </ul>
     </nav>
  </div>

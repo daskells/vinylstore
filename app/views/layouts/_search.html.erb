@@ -1,0 +1,5 @@
+<%= form_tag("/search" , :method => "post") do %>
+<%= label_tag("Search Artist or Album:") %>
+<%= text_field_tag(:q) %>
+<%= submit_tag("Search") %>
+<% end %>

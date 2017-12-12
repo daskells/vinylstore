@@ -25,4 +25,12 @@ class StaticPagesController < ApplicationController
 
   def confirmation
   end
+  
+  def paid
+    
+    flash[:notice] = 'Transaction complete'
+    @order = Order.last
+    @order.update_attribute(:status , "Paid by user: #{current_user.email}")
+  end
+  
 end

@@ -1,6 +1,13 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
+def search
+  @search_term = params[:q]
+  st = "%#{params[:q]}%"  
+  @items = Item.where("title like ? or artist like ?", st, st)
+end
+
+
   # GET /items
   # GET /items.json
   def index
